@@ -1,0 +1,10 @@
+Bootstrap: docker
+From: bitnami/minideb:bullseye
+stage: Initial
+
+%post
+#install R
+  install_packages r-base r-base-dev libcurl4-openssl-dev libssl-dev libxml2-dev
+
+  R --slave -e 'install.packages("Hmisc", repos="https://cloud.r-project.org/")'
+

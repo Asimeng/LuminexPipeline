@@ -1,0 +1,43 @@
+Bootstrap: docker
+From: bitnami/minideb:bullseye
+stage: dev
+
+%post
+  sed -i '$ a deb http://cloud.r-project.org/bin/linux/debian bullseye-cran40/' /etc/apt/sources.list
+  sed -i '$ a deb-src deb http://cloud.r-project.org/bin/linux/debian bullseye-cran40/' /etc/apt/sources.list
+
+  apt-get -y build-dep r-base
+  export R_VERSION=4.1.2
+  install_packages curl tar
+  curl -O https://cran.rstudio.com/src/base/R-4/R-${R_VERSION}.tar.gz
+  tar -xzvf R-${R_VERSION}.tar.gz
+  cd R-${R_VERSION}
+  
+
+  ./configure \
+    --prefix=/opt/R/${R_VERSION} \
+    --enable-memory-profiling \
+    --enable-R-shlib \
+    --with-blas \
+    --with-lapack
+  
+  make
+  make install
+
+  
+  #cd /usr/local/src
+  #wget https://cran.r-project.org/src/base/R-4/R-4.1.2.tar.gz
+  #tar -zxvf R-4.1.2.tar.gz
+  #./configure LIBnn=lib
+  #make
+
+
+ 
+Bootstrap: docker
+From: bitnami/minideb:bullseye
+stage: final
+
+%files from dev
+  ln -s /opt/R/${R_VERSION}/bin/R /usr/local/bin/R
+  #/usr/bin/R /usr/bin/R
+  #/usr/lib/R /usr/lib/R

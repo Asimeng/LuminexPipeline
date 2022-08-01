@@ -1,0 +1,11 @@
+Analyte	Type	Well	Outlier	Description	FI	FI...Bkgd	Std.Dev	Std.Err	X.CV	Norm.Ratio	Norm.Ratio.Std.Dev	Norm.Ratio.Std.Err	Norm.Ratio..CV	Norm.FI	Norm.FI.Std.Dev	Norm.FI.Std.Err	Norm.FI..CV	Conc.in.Range	Obs.Conc	Obs.Conc.Std.Dev	Obs.Conc.Std.Err	Obs.Conc..CV	Exp.Conc	X.Obs.Exp.	Group	Ratio	Dilution	Bead.Count	Bead.Mean	Bead.Std.Dev	Bead.Std.Err	Bead..CV	Trimmed.Mean	Trimmed.Std.Dev	Trimmed.Std.Err	Trimmed..CV	Sampling.Errors
+IL-7 (29)	B	A1,B1	0	NA	7.0	7.0	0.00	0.00	0.00	***	NA	NA	NA	***	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	1.00	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA
+IL-7 (29)	S1	C1,D1	0	NA	10003.0	9996.0	445.48	315.00	4.45	***	NA	NA	NA	***	NA	NA	NA	1108.77	1108.77	133.77	94.59	12.01	1110.00	100	NA	NA	1.00	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA
+IL-7 (29)	S2	E1,F1	0	NA	4807.3	4800.3	36.42	25.75	0.76	***	NA	NA	NA	***	NA	NA	NA	278.70	278.70	3.16	2.24	1.13	277.50	100	NA	NA	1.00	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA
+IL-7 (29)	S3	G1,H1	0	NA	1700.3	1693.3	92.98	65.75	5.47	***	NA	NA	NA	***	NA	NA	NA	68.54	68.54	4.76	3.36	6.94	69.38	99	NA	NA	1.00	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA
+IL-7 (29)	S4	A2,B2	0	NA	567.5	560.5	14.85	10.50	2.62	***	NA	NA	NA	***	NA	NA	NA	17.54	17.54	0.56	0.40	3.21	17.34	101	NA	NA	1.00	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA
+Analyte	Type	Well	Outlier	Description	FI	FI - Bkgd	Std Dev	Std Err	%CV	Norm Ratio	Norm Ratio Std Dev	Norm Ratio Std Err	Norm Ratio %CV	Norm FI	Norm FI Std Dev	Norm FI Std Err	Norm FI %CV	Conc in Range	Obs Conc	Obs Conc Std Dev	Obs Conc Std Err	Obs Conc %CV	Exp Conc	(Obs/Exp) * 100	Group	Ratio	Dilution	Bead Count	Bead Mean	Bead Std Dev	Bead Std Err	Bead %CV	Trimmed Mean	Trimmed Std Dev	Trimmed Std Err	Trimmed %CV	Sampling Errors
+IL-7 (29)	B	A1	0	NA	7.0	7.0	NA	NA	NA	***	NA	NA	NA	***	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	1.00	203	6.93	2.55	0.18	36.73	6.79	1.50	0.11	22.13	NA
+IL-7 (29)	B	B1	0	NA	7.0	7.0	NA	NA	NA	***	NA	NA	NA	***	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	1.00	159	6.82	1.95	0.15	28.62	6.75	1.40	0.12	20.77	NA
+IL-7 (29)	S1	C1	0	NA	9688.0	9681.0	NA	NA	NA	***	NA	NA	NA	***	NA	NA	NA	1019.37	1019.37	NA	NA	NA	1110.00	92	NA	NA	1.00	261	9568.93	1493.54	92.45	15.61	9627.31	650.48	42.43	6.76	NA
+IL-7 (29)	S1	D1	0	NA	10318.0	10311.0	NA	NA	NA	***	NA	NA	NA	***	NA	NA	NA	OOR >	*1208.56	NA	NA	NA	1110.00	109	NA	NA	1.00	235	10113.95	1206.60	78.71	11.93	10193.18	726.68	50.03	7.13	NA

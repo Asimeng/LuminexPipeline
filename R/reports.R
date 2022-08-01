@@ -1,0 +1,248 @@
+#' Summary table
+#'
+#' @param dta processed dataframe
+#'
+#' @return a table of summaries
+#' @export
+#'
+#'
+summ_table <- function(dta) {
+
+  options(scipen = 999, digits = 1)
+
+  summary_table <- dta %>%
+
+    group_by(analyte) %>%
+
+    dplyr::summarise(
+      minimum = min(obs_conc, na.rm = TRUE),
+      maximum = max(obs_conc, na.rm = TRUE),
+      mean = mean(obs_conc, na.rm = TRUE),
+      first_quart = quantile(obs_conc,  probs = 0.25, na.rm = TRUE),
+      median = median(obs_conc, na.rm = TRUE),
+      third_quart = quantile(obs_conc, probs = 0.75, na.rm = TRUE),
+      NAs = sum(is.na(obs_conc)),
+      available_obs = sum(!is.na(obs_conc)),
+      total_obs = n()) %>%
+
+    ungroup()
+
+  readr::write_rds(summary_table, "rds/summary_table.rds")
+
+  return(summary_table)
+
+}
+
+
+
+#' Histogram plot
+#'
+#' @param dta_prtc processed dataframe
+#' @param facet_rows numeric value indicating number of rows to facet.
+#'
+#' @return a plot of histogram
+#' @export
+#'
+#'
+#'
+histogram_plot <- function(dta_prtc, facet_rows = 5) {
+
+  dta_prtc %>%
+    ggplot2::ggplot(aes(x = obs_conc)) +
+    geom_histogram(aes(y = ..density..), colour = "black", fill = "grey", na.rm = TRUE) +
+    geom_density(colour = "blue") +
+    facet_wrap(~ analyte, nrow = facet_rows,  scales ="free") +
+    ggtitle("Plot with untransformed data")
+}
+
+
+
+#' Test for normality
+#'
+#' @param dat data to generate test of normality table from
+#'
+#' @return a table of normality test
+#' @export
+#'
+#'
+norm_tab <- function(dat){
+
+  options(scipen = F, digits = 1)
+
+  tab <-  dat %>%
+
+    group_by(analyte) %>%
+
+    summarise(kurtosis = DescTools::Kurt(obs_conc, na.rm = T),
+
+              skewness = DescTools::Skew(obs_conc, na.rm = T),
+
+              Shapiro.Francia = if(sum(!is.na(obs_conc)) >= 5) {
+
+                DescTools::ShapiroFranciaTest(obs_conc)[["statistic"]]
+
+              } else {NA
+              },
+
+              p_val = if(sum(!is.na(obs_conc)) >= 5) {
+
+                DescTools::ShapiroFranciaTest(obs_conc)[["p.value"]]
+
+              } else{NA
+              }
+    )
+
+  return(view(tab))
+}
+
+
+
+#' Generate quantile-quantile plots to assess normality
+#'
+#' @param dta dataframe from pipeline
+#' @param facet_row numeric value indicating number of rows to facet
+#'
+#' @return A quantile-quantil graph
+#' @export
+#'
+#'
+qq_plot <- function(dta, facet_row = 5){
+
+  dta %>%
+    ggplot2::ggplot(aes(sample = obs_conc)) +
+    stat_qq() +
+    stat_qq_line() +
+    ggplot2::facet_wrap(~ analyte, nrow = facet_row, scales = "free")
+}
+
+
+
+#' Comparison between groups being analysed
+#'
+#' @param dta_prtc participant data
+#' @param dta_clin clinical data
+#'
+#' @return A dataframe of comparison between groups summary
+#' @export
+#'
+#'
+grp_test <- function(dta_prtc, dta_clin){
+
+  grp_dat <- inner_join(dta_prtc, dta_clin, by = "description") %>%
+    select(analyte, obs_conc, age, group) %>%
+    mutate(group = as.factor(group)
+    ) %>%
+
+# Analytes with a single observation eg (IL-6 of test dataset) returns an error. work around to filter such data
+
+    group_by(analyte) %>%
+
+    summarise(p.value = wilcox.test(obs_conc ~ group )[["p.value"]],
+
+              w.statistic = wilcox.test(obs_conc ~ group)[["statistic"]])
+
+  return(grp_dat)
+}
+
+
+
+#' Correlation tests
+#'
+#' @param dta dataframe from the pipeline
+#' @param cor_type type of correlation in string format. eg "pearson"
+#'
+#' @return a flatten correlation matrix (table)
+#' @export
+#'
+#'
+correlation <- function(dta, cor_type = "spearman"){
+
+  piv_dat <- dta %>%
+
+    tidyr::pivot_wider(
+      names_from = analyte,
+      values_from = obs_conc) %>%
+
+    dplyr::select(-description,
+           -meta_threestar,
+           -meta_onestar,
+           -meta_oorgt,
+           -meta_oorlt)
+
+  cor <- Hmisc::rcorr(as.matrix(piv_dat), type = cor_type)
+
+  flattenCorrMatrix <- function(cormat, pmat) {
+    ut <- upper.tri(cormat)
+    data.frame(
+      analyte_1 = rownames(cormat)[row(cormat)[ut]],
+      analyte_2 = rownames(cormat)[col(cormat)[ut]],
+      co.eff  = (cormat)[ut],
+      p.value = pmat[ut]
+    )
+  }
+
+  cor <- flattenCorrMatrix(cor$r, cor$P)
+
+  arr_cor <- arrange(cor, desc(abs(co.eff))) %>%
+    filter(!is.na(co.eff))
+
+  return(arr_cor)
+}
+
+
+
+#' Visualise correlogram - analytes
+#'
+#' @param dta dataframe from pipeline
+#' @param cor_type character, type of correlation to compute
+#'
+#' @return A graph (correlogram) of correlations
+#' @export
+#'
+#'
+cor_plot <- function(dta, cor_type = "spearman"){
+
+  piv_dat <- dta %>%
+
+    tidyr::pivot_wider(
+      names_from = analyte,
+      values_from = obs_conc) %>%
+
+    dplyr::select(-description,
+                  -meta_threestar,
+                  -meta_onestar,
+                  -meta_oorgt,
+                  -meta_oorlt)
+
+  #res <- cor(piv_dat)
+
+  cor <- Hmisc::rcorr(as.matrix(piv_dat), type = cor_type)
+
+  #round(res, 2)
+  #corrplot(res, type = "upper", order = "hclust",tl.col = "black", tl.srt = 45)
+
+  corrplot::corrplot(cor[["r"]], type="upper", order="alphabet",
+                     tl.cex = 0.6,tl.col="black", tl.srt=45)
+}
+
+#' render statistical summary report
+#'
+#' @param dta rds file with its extension
+#'
+#' @return an html report
+#' @export
+#'
+#'
+
+render_report <- function(dta) {
+
+  rmarkdown::render(
+    input = "vignettes/reports.Rmd",
+    output_dir = "rds/statistical_summary_report.html",
+    params = list(
+      directory = "rds",
+      file = dta
+    )
+  )
+
+}

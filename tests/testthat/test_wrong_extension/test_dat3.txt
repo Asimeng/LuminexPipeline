@@ -1,0 +1,11 @@
+Analyte	Type	Well	Outlier	Description	FI	FI...Bkgd	Std.Dev	Std.Err	X.CV	Norm.Ratio	Norm.Ratio.Std.Dev	Norm.Ratio.Std.Err	Norm.Ratio..CV	Norm.FI	Norm.FI.Std.Dev	Norm.FI.Std.Err	Norm.FI..CV	Conc.in.Range	Obs.Conc	Obs.Conc.Std.Dev	Obs.Conc.Std.Err	Obs.Conc..CV	Exp.Conc	X.Obs.Exp.	Group	Ratio	Dilution	Bead.Count	Bead.Mean	Bead.Std.Dev	Bead.Std.Err	Bead..CV	Trimmed.Mean	Trimmed.Std.Dev	Trimmed.Std.Err	Trimmed..CV	Sampling.Errors
+Apolipoprotein AI (18)	B	A1,B1	0	NA	16.5	16.5	0.71	0.50	4.29	***	NA	NA	NA	***	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	1.00	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA
+Apolipoprotein AI (18)	S1	C1,D1	0	NA	32.5	16.0	4.95	3.50	15.23	***	NA	NA	NA	***	NA	NA	NA	0.72	0.72	0.45	0.32	63.88	0.73	98	NA	NA	1.00	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA
+Apolipoprotein AI (18)	S2	E1,F1	0	NA	59.3	42.8	1.06	0.75	1.79	***	NA	NA	NA	***	NA	NA	NA	2.96	2.96	0.08	0.06	2.86	2.93	101	NA	NA	1.00	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA
+Apolipoprotein AI (18)	S3	G1,H1	0	NA	179.8	163.3	8.84	6.25	4.92	***	NA	NA	NA	***	NA	NA	NA	11.91	11.91	0.63	0.45	5.29	11.72	102	NA	NA	1.00	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA
+Apolipoprotein AI (18)	S4	A2,B2	0	NA	668.0	651.5	23.33	16.50	3.49	***	NA	NA	NA	***	NA	NA	NA	45.36	45.36	1.59	1.12	3.49	46.88	97	NA	NA	1.00	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA
+Analyte	Type	Well	Outlier	Description	FI	FI - Bkgd	Std Dev	Std Err	%CV	Norm Ratio	Norm Ratio Std Dev	Norm Ratio Std Err	Norm Ratio %CV	Norm FI	Norm FI Std Dev	Norm FI Std Err	Norm FI %CV	Conc in Range	Obs Conc	Obs Conc Std Dev	Obs Conc Std Err	Obs Conc %CV	Exp Conc	(Obs/Exp) * 100	Group	Ratio	Dilution	Bead Count	Bead Mean	Bead Std Dev	Bead Std Err	Bead %CV	Trimmed Mean	Trimmed Std Dev	Trimmed Std Err	Trimmed %CV	Sampling Errors
+Apolipoprotein AI (18)	B	A1	0	NA	17.0	17.0	NA	NA	NA	***	NA	NA	NA	***	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	1.00	50	16.76	6.92	0.98	41.28	16.75	5.04	0.76	30.12	NA
+Apolipoprotein AI (18)	B	B1	0	NA	16.0	16.0	NA	NA	NA	***	NA	NA	NA	***	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	1.00	50	16.48	4.35	0.61	26.39	16.43	3.27	0.49	19.88	NA
+Apolipoprotein AI (18)	S1	C1	0	NA	36.0	19.5	NA	NA	NA	***	NA	NA	NA	***	NA	NA	NA	1.03	1.03	NA	NA	NA	0.73	140	NA	NA	1.00	50	36.74	15.08	2.13	41.06	36.84	11.48	1.73	31.17	NA
+Apolipoprotein AI (18)	S1	D1	0	NA	29.0	12.5	NA	NA	NA	***	NA	NA	NA	***	NA	NA	NA	OOR <	*0.39	NA	NA	NA	0.73	53	NA	NA	1.00	50	29.42	6.83	0.97	23.23	29.23	4.85	0.73	16.58	NA

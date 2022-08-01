@@ -1,0 +1,11 @@
+Analyte	Type	Well	Outlier	Description	FI	FI...Bkgd	Std.Dev	Std.Err	X.CV	Norm.Ratio	Norm.Ratio.Std.Dev	Norm.Ratio.Std.Err	Norm.Ratio..CV	Norm.FI	Norm.FI.Std.Dev	Norm.FI.Std.Err	Norm.FI..CV	Conc.in.Range	Obs.Conc	Obs.Conc.Std.Dev	Obs.Conc.Std.Err	Obs.Conc..CV	Exp.Conc	X.Obs.Exp.	Group	Ratio	Dilution	Bead.Count	Bead.Mean	Bead.Std.Dev	Bead.Std.Err	Bead..CV	Trimmed.Mean	Trimmed.Std.Dev	Trimmed.Std.Err	Trimmed..CV	Sampling.Errors
+SAA (76)	B	A1,B1	0	NA	10.5	10.5	0.71	0.50	6.73	***	NA	NA	NA	***	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	1.00	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA
+SAA (76)	S1	C1,D1	1	NA	---	---	NA	NA	NA	***	NA	NA	NA	***	NA	NA	NA	NA	NA	NA	NA	NA	0.24	NA	NA	NA	1.00	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA
+SAA (76)	S2	E1,F1	0	NA	61.0	50.5	5.66	4.00	9.27	***	NA	NA	NA	***	NA	NA	NA	0.98	0.98	0.19	0.13	19.44	0.98	100	NA	NA	1.00	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA
+SAA (76)	S3	G1,H1	2	NA	305.0	294.5	0.00	0.00	0.00	***	NA	NA	NA	***	NA	NA	NA	3.91	3.91	0.00	0.00	0.00	3.91	100	NA	NA	1.00	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA
+SAA (76)	S4	A2,B2	0	NA	1731.0	1720.5	127.99	90.50	7.39	***	NA	NA	NA	***	NA	NA	NA	15.55	15.55	1.19	0.84	7.64	15.63	100	NA	NA	1.00	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA
+Analyte	Type	Well	Outlier	Description	FI	FI - Bkgd	Std Dev	Std Err	%CV	Norm Ratio	Norm Ratio Std Dev	Norm Ratio Std Err	Norm Ratio %CV	Norm FI	Norm FI Std Dev	Norm FI Std Err	Norm FI %CV	Conc in Range	Obs Conc	Obs Conc Std Dev	Obs Conc Std Err	Obs Conc %CV	Exp Conc	(Obs/Exp) * 100	Group	Ratio	Dilution	Bead Count	Bead Mean	Bead Std Dev	Bead Std Err	Bead %CV	Trimmed Mean	Trimmed Std Dev	Trimmed Std Err	Trimmed %CV	Sampling Errors
+SAA (76)	B	A1	0	NA	11.0	11.0	NA	NA	NA	***	NA	NA	NA	***	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	1.00	42	17.33	41.34	6.38	238.51	11.13	4.11	0.67	36.90	NA
+SAA (76)	B	B1	0	NA	10.0	10.0	NA	NA	NA	***	NA	NA	NA	***	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	NA	1.00	37	11.81	6.89	1.13	58.31	11.48	5.72	1.00	49.83	NA
+SAA (76)	S1	C1	1	NA	20.5	10.0	NA	NA	NA	***	NA	NA	NA	***	NA	NA	NA	NA	NA	NA	NA	NA	0.24	NA	NA	NA	1.00	50	21.20	12.64	1.79	59.63	20.66	9.77	1.47	47.30	NA
+SAA (76)	S1	D1	1	NA	19.5	9.0	NA	NA	NA	***	NA	NA	NA	***	NA	NA	NA	NA	NA	NA	NA	NA	0.24	NA	NA	NA	1.00	50	19.18	9.65	1.37	50.33	19.14	8.42	1.27	44.02	NA

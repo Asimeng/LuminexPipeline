@@ -1,0 +1,38 @@
+Package: LuminexPipeline
+Title: Analysis of multiplexed ELISA data
+Version: 0.0.0.9000
+Authors@R: 
+    person("SATBBI", "StellenboschUni", , "satbbi@sun.ac.za", role = c("aut", "cre"))
+Description: Enhance the reproducibility Luminex data analyses.
+License: MIT + file LICENSE
+Encoding: UTF-8
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.2.1
+Imports: 
+    corrplot,
+    DescTools,
+    dplyr,
+    english,
+    ggplot2,
+    gsubfn,
+    Hmisc,
+    lubridate,
+    magrittr,
+    minpack.lm,
+    msm,
+    plyr,
+    purrr,
+    readr,
+    reshape,
+    stringr,
+    tibble,
+    tidyr
+Suggests: 
+    rmarkdown,
+    knitr,
+    testthat (>= 3.0.0)
+VignetteBuilder: knitr
+Config/testthat/edition: 3
+Depends: 
+    R (>= 2.10)
+LazyData: true

@@ -1,10 +1,13 @@
 Package: LuminexPipeline
-Title: Analysis of multiplexed ELISA data
+Title: Reproducible Processing And Analysis Of Multiplexed ELISA Data
 Version: 0.0.0.9000
 Authors@R: 
-    person("SATBBI", "StellenboschUni", , "satbbi@sun.ac.za", role = c("aut", "cre"))
-Description: Enhance the reproducibility Luminex data analyses.
-License: MIT + file LICENSE
+    person("Jesse", "Asimeng", , "asimeng@sun.ac.za", 
+    role = c("aut", "cre"))
+Description: R-based Luminex pipeline that reads .txt files produced by Luminex
+    instruments and outputs experimental data, quality control data and metadata. 
+    it also create summary statistics and exploratory data visualisation.
+License: GPL (>= 3)
 Encoding: UTF-8
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.2.1

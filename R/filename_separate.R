@@ -163,14 +163,48 @@ dates_filename <- function(d) {
 
 
 
-#' Filename separation
-#' Check structure of observations in the filename column in the imported data
+#' Extract relevant metadata from filenames of valid imported Luminex files
 #'
-#' @param data Output from the data_import function. The filename_separate function works with the assumption that this input data is already loaded in the environment.
-#' if input data is not already in the environment, ensure that it is loaded or read it into the environment.
-#' @param instrument_names Character vector of expected instrument names. This is sourced from the accompanying metadata from the experiment
+#' @description
+#' Extract useful metadata e.g., (kit name, instrument name, date) from
+#' the \code{filenames} column created by the \code{data_import()} function
+#' and assign each metadata type a column in the output tibble.
 #'
-#' @return a tibble of the input data with added columns for date, kit, instrument, plate and rerun. values of these new columns are extracted from "filename" column of the input data
+#' @param data Output of the \code{data_import()} function.
+#' A valid Luminex tibble or dataframe.
+#'
+#'
+#' @param instrument_names Character vector of expected instrument names.
+#' This is sourced from the accompanying metadata from the experiment
+#'
+#' @details
+#' As part of the standard operating procedures (SOP), The raw Luminex
+#' \code{.txt} files are named with metadata with a specified guideline. This
+#' function extracts these metadata (from the \code{filenames} column created
+#' by the \code{data_import()} function) and adds new columns to
+#' the output tibble for each type of metadata e.g., "date", "instrument_name" etc.
+#' i.e, values of these new columns are extracted from \code{filename} column of the
+#' input data.
+#'
+#' The new columns are parsed with its correct data types. e.g., dates are parsed
+#' with date-time format.
+#'
+#' The \code{filename_separate()} function works with the assumption that its
+#' input data is available in the R environment. If input data is not already
+#' available in the environment, ensure that it is loaded in the environment
+#'
+#' @return A tibble of the input data with added columns for extracted metadata
+#' e.g., date, kit, instrument, plate and rerun.
+#'
+#' @examples
+#' #assign instrument names to a variable called ins_names
+#' ins_names <- c("bp", "rd")
+#'
+#' #read input data to the environment
+#' my_data <- readRDS("tests/testthat/rds/dta_import.rds")
+#'
+#' filename_separate(data = my_data, instrument_names = ins_names)
+#'
 #' @export
 #'
 

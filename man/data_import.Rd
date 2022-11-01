@@ -2,18 +2,47 @@
 % Please edit documentation in R/data_import.R
 \name{data_import}
 \alias{data_import}
-\title{data_import function Reads in valid files, one line per well, keeping standards,
-controls and unknowns in one data frame called "dta"}
+\title{Reads and import raw Luminex .txt files into R}
 \usage{
 data_import(dir_data)
 }
 \arguments{
-\item{dir_data}{directory of datasets}
+\item{dir_data}{Path or directory to input datasets (\code{.txt} files)}
 }
 \value{
-None
+An unprocessed (raw) tibble of valid Luminex files that are binded
+by rows.
 }
 \description{
-data_import function Reads in valid files, one line per well, keeping standards,
-controls and unknowns in one data frame called "dta"
+Recursively searches input directory for valid Luminex .txt files and converts
+them into an rds format. The rds file is then written to the \code{rds/}
+directory configured with \code{pipeline_config()} function.
+}
+\details{
+The input directory may contain files other than .txt file formats. In such
+case, this function will process these non-compliant files types and save
+them in an \code{.rds} file format.
+
+The function checks for expected column names of standard Luminex files e.g.,
+\code{("Analyte","Type", "Well","Outlier","Description","FI")}
+in the imported \code{.txt} files and classifies them as valid or invalid
+Luminex files.
+
+All valid Luminex files are merged into a single \code{.rds} file and written
+to a file named: \code{rds/dta_import.rds/}
+
+All invalid Luminex files are stored in a single \code{.rds} file and written
+to a file named: \code{rds/rep_files_invalid.rds/}
+
+The \code{rds/} directory can be manually created in the working directory as
+an alternative to using the \code{pipeline_config()} function to set it up.
+
+The function creates a \code{filename} column with extracted data from the raw
+Luminex \code{.txt} filenames.
+}
+\examples{
+dir <- "inst/extdata/"
+
+data_import(dir_data = dir)
+
 }

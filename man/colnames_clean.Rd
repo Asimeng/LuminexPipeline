@@ -7,12 +7,31 @@
 colnames_clean(dta)
 }
 \arguments{
-\item{dta}{output data of the preceding function ie., filename_separate function. The colnames_clean function assumes its input data is already loaded in the environment.
-if input data is not already available in the environment, ensure that it is loaded or read it into the environment.}
+\item{dta}{output tibble or dataframe of the preceding
+\code{filename_separate()} function.This can as well be any other dataframe}
 }
 \value{
-a tibble of the input data but with cleaned column names eg. lower case column names, removal of special characters in column names
+a tibble of the input data transformed with cleaned column names.
 }
 \description{
-Clean column names
+cleans column names of input data into recommended standard compliant form
+e.g., transforming column names to lower case,
+removal of special characters in column names, etc.
+}
+\details{
+The \code{colnames_clean()} function assumes its input data is available
+in the R environment. if input data is not already available in the environment,
+ensure that it is loaded in the environment.
+
+Output of this function is written to a file named:
+\code{rds/dta_colnames_clean.rds}
+
+This function can be applied to other imported datasets.
+}
+\examples{
+#read data into the environment
+my_data <- readRDS("tests/testthat/rds/dta_separate.rds")
+
+colnames_clean(dta = my_data)
+
 }

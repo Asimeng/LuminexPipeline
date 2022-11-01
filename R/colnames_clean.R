@@ -5,8 +5,8 @@
 #' e.g., transforming column names to lower case,
 #' removal of special characters in column names, etc.
 #'
-#' @param dta output data of the preceding \code{filename_separate()} function.
-#' This can as well be any imported data
+#' @param dta output tibble or dataframe of the preceding
+#'  \code{filename_separate()} function.This can as well be any other dataframe
 #'
 #' @details
 #' The \code{colnames_clean()} function assumes its input data is available

@@ -4,13 +4,36 @@ output: html_document
 
 params:
   data: "dta.rds"
+  cor_type: "spearman"
+  facet: 5
 ---
-
+## Summary table
 ```{r}
 LuminexPipeline::summ_table(params$data)
 ```
 
+## Analytes in a histogram
 ```{r}
+LuminexPipeline::histogram_plot(params$data, params$facet)
+```
 
+## Test for non-normality
+```{r}
+LuminexPipeline::norm_tab(params$data)
+```
+
+## q-q plot
+```{r}
+LuminexPipeline::qq_plot(params$data, params$facet)
+```
+
+## Correlation table
+```{r}
+LuminexPipeline::correlation(params$data, params$cor_type)
+```
+
+## Visualise correlation
+```{r}
+LuminexPipeline::cor_plot(params$data, params$cor_type)
 ```
 

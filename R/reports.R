@@ -159,15 +159,17 @@ correlation <- function(dta, cor_type = "spearman"){
 
   piv_dat <- dta %>%
 
+    select(analyte, conc_obs_num) %>%
+
+    group_by(analyte) %>%
+
+    mutate(row = row_number()) %>%
+
     tidyr::pivot_wider(
       names_from = analyte,
-      values_from = obs_conc) %>%
+      values_from = conc_obs_num) %>%
 
-    dplyr::select(-description,
-           -meta_threestar,
-           -meta_onestar,
-           -meta_oorgt,
-           -meta_oorlt)
+    dplyr::select(-row)
 
   cor <- Hmisc::rcorr(as.matrix(piv_dat), type = cor_type)
 

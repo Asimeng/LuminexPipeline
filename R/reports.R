@@ -27,7 +27,7 @@ summ_table <- function(dta) {
 
     ungroup()
 
-  readr::write_rds(summary_table, "rds/summary_table.rds")
+  #readr::write_rds(summary_table, "rds/summary_table.rds")
 
   return(summary_table)
 

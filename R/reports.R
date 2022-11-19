@@ -15,14 +15,14 @@ summ_table <- function(dta) {
     group_by(analyte) %>%
 
     dplyr::summarise(
-      minimum = min(obs_conc, na.rm = TRUE),
-      maximum = max(obs_conc, na.rm = TRUE),
-      mean = mean(obs_conc, na.rm = TRUE),
-      first_quart = quantile(obs_conc,  probs = 0.25, na.rm = TRUE),
-      median = median(obs_conc, na.rm = TRUE),
-      third_quart = quantile(obs_conc, probs = 0.75, na.rm = TRUE),
-      NAs = sum(is.na(obs_conc)),
-      available_obs = sum(!is.na(obs_conc)),
+      minimum = min(conc_obs_num, na.rm = TRUE),
+      maximum = max(conc_obs_num, na.rm = TRUE),
+      mean = mean(conc_obs_num, na.rm = TRUE),
+      first_quart = quantile(conc_obs_num,  probs = 0.25, na.rm = TRUE),
+      median = median(conc_obs_num, na.rm = TRUE),
+      third_quart = quantile(conc_obs_num, probs = 0.75, na.rm = TRUE),
+      NAs = sum(is.na(conc_obs_num)),
+      available_obs = sum(!is.na(conc_obs_num)),
       total_obs = n()) %>%
 
     ungroup()
@@ -48,7 +48,7 @@ summ_table <- function(dta) {
 histogram_plot <- function(dta_prtc, facet_rows = 5) {
 
   dta_prtc %>%
-    ggplot2::ggplot(aes(x = obs_conc)) +
+    ggplot2::ggplot(aes(x = conc_obs_num)) +
     geom_histogram(aes(y = ..density..), colour = "black", fill = "grey", na.rm = TRUE) +
     geom_density(colour = "blue") +
     facet_wrap(~ analyte, nrow = facet_rows,  scales ="free") +
@@ -73,20 +73,20 @@ norm_tab <- function(dat){
 
     group_by(analyte) %>%
 
-    summarise(kurtosis = DescTools::Kurt(obs_conc, na.rm = T),
+    summarise(kurtosis = DescTools::Kurt(conc_obs_num, na.rm = T),
 
-              skewness = DescTools::Skew(obs_conc, na.rm = T),
+              skewness = DescTools::Skew(conc_obs_num, na.rm = T),
 
-              Shapiro.Francia = if(sum(!is.na(obs_conc)) >= 5) {
+              Shapiro.Francia = if(sum(!is.na(conc_obs_num)) >= 5) {
 
-                DescTools::ShapiroFranciaTest(obs_conc)[["statistic"]]
+                DescTools::ShapiroFranciaTest(conc_obs_num)[["statistic"]]
 
               } else {NA
               },
 
-              p_val = if(sum(!is.na(obs_conc)) >= 5) {
+              p_val = if(sum(!is.na(conc_obs_num)) >= 5) {
 
-                DescTools::ShapiroFranciaTest(obs_conc)[["p.value"]]
+                DescTools::ShapiroFranciaTest(conc_obs_num)[["p.value"]]
 
               } else{NA
               }
@@ -109,7 +109,7 @@ norm_tab <- function(dat){
 qq_plot <- function(dta, facet_row = 5){
 
   dta %>%
-    ggplot2::ggplot(aes(sample = obs_conc)) +
+    ggplot2::ggplot(aes(sample = conc_obs_num)) +
     stat_qq() +
     stat_qq_line() +
     ggplot2::facet_wrap(~ analyte, nrow = facet_row, scales = "free")
@@ -129,7 +129,7 @@ qq_plot <- function(dta, facet_row = 5){
 grp_test <- function(dta_prtc, dta_clin){
 
   grp_dat <- inner_join(dta_prtc, dta_clin, by = "description") %>%
-    select(analyte, obs_conc, age, group) %>%
+    select(analyte, conc_obs_num, age, group) %>%
     mutate(group = as.factor(group)
     ) %>%
 
@@ -137,9 +137,9 @@ grp_test <- function(dta_prtc, dta_clin){
 
     group_by(analyte) %>%
 
-    summarise(p.value = wilcox.test(obs_conc ~ group )[["p.value"]],
+    summarise(p.value = wilcox.test(conc_obs_num ~ group )[["p.value"]],
 
-              w.statistic = wilcox.test(obs_conc ~ group)[["statistic"]])
+              w.statistic = wilcox.test(conc_obs_num ~ group)[["statistic"]])
 
   return(grp_dat)
 }
@@ -206,15 +206,18 @@ cor_plot <- function(dta, cor_type = "spearman"){
 
   piv_dat <- dta %>%
 
+    select(analyte, conc_obs_num) %>%
+
+    group_by(analyte) %>%
+
+    mutate(row = row_number()) %>%
+
     tidyr::pivot_wider(
       names_from = analyte,
-      values_from = obs_conc) %>%
+      values_from = conc_obs_num) %>%
 
-    dplyr::select(-description,
-                  -meta_threestar,
-                  -meta_onestar,
-                  -meta_oorgt,
-                  -meta_oorlt)
+    dplyr::select(-row)
+
 
   #res <- cor(piv_dat)
 

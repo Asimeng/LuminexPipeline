@@ -1,0 +1,16 @@
+---
+title: "LuminexPipeline statistical summary report"
+output: html_document
+
+params:
+  data: "dta.rds"
+---
+
+```{r}
+LuminexPipeline::summ_table(params$data)
+```
+
+```{r}
+
+```
+

@@ -151,6 +151,6 @@ data_import <- function(dir_data) {
 
   luminex_list <- luminex_list[luminex_list != "invalid"]
   dta <- dplyr::bind_rows(luminex_list)
-  readr::write_rds(dta, "rds/dta_import.rds")
+  readr::write_rds(dta, "rds/1_dta_import.rds")
   return(dta)
 }

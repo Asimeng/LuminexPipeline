@@ -38,7 +38,7 @@ colnames_clean <- function(dta){
   colnames(dta) <- gsub("^\\s", "\\1", colnames(dta), perl = TRUE)
   colnames(dta) <- gsub("\\s$", "\\1", colnames(dta), perl = TRUE)
 
-  readr::write_rds(dta, "rds/dta_colnames_clean.rds")
+  readr::write_rds(dta, "rds/3_dta_colnames_clean.rds")
 
   return(dta)
   # assign("dta", dta, envir = .GlobalEnv)

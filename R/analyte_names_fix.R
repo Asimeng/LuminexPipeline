@@ -117,6 +117,6 @@ analyte_names_fix2 <- function(analyte_reference_path = analyte_reference_path,
                   ~case_when(is.na(consensus) ~ analyte_simple,
                              TRUE ~ consensus)))
 
-  readr::write_rds(d, "rds/dta_analyte_ref.rds")
+  readr::write_rds(d, "rds/4_dta_analyte_ref.rds")
 
 }

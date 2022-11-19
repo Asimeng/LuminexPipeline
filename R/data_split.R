@@ -31,7 +31,7 @@ data_split <- function(dta = dta) {
     dplyr::select(all_of(dta_qc))
 
   tmp <- list(dta_participants = dta_participants, dta_qc = dta_qc)
-  readr::write_rds(tmp, "rds/dta_list.rds")
+  readr::write_rds(tmp, "rds/7_dta_list.rds")
 
   # assign("dta_participants", dta_participants, envir = .GlobalEnv)
   # assign("dta_qc", dta_qc, envir = .GlobalEnv)

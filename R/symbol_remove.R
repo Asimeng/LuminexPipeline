@@ -45,5 +45,5 @@ symbols_remove <- function(dta = dta) {
                                                   TRUE ~ fi_bkgd)) %>%
     dplyr::select(-tmp, -tmp1)
 
-  readr::write_rds(dta, "rds/dta_symbol_remove.rds")
+  readr::write_rds(dta, "rds/6_dta_symbol_remove.rds")
 }

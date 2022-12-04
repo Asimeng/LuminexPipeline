@@ -41,7 +41,7 @@ The function creates a \code{filename} column with extracted data from the raw
 Luminex \code{.txt} filenames.
 }
 \examples{
-dir <- "inst/extdata/"
+dir <- paste0(system.file(package = "LuminexPipeline"), "/extdata")
 
 data_import(dir_data = dir)
 

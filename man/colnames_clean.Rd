@@ -30,8 +30,11 @@ This function can be applied to other imported datasets.
 }
 \examples{
 #read data into the environment
-my_data <- readRDS("tests/testthat/rds/dta_separate.rds")
+data(dta_separate)
+dir.create("rds")
+colnames_clean(dta = dta_separate)
 
-colnames_clean(dta = my_data)
+#delete the rds directory created
+unlink("rds")
 
 }

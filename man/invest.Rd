@@ -44,6 +44,8 @@ Error of the concentration. If \code{ci.method} 'bootstrap' is \code{NA}}
 \description{
 Estimates the inverse of the funtion. Given a response value,
 estimates the corresponding concentration value and the standard error.
+NB: This is a borrowed function from the drLumi R package which
+is no longer available on the CRAN for automatic installation.
 }
 \details{
 Delta method function used is \code{\link[msm]{deltamethod}}

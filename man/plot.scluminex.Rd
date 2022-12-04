@@ -53,6 +53,8 @@ A \code{ggplot} object
 This function takes a \code{scluminex} object and
 creates a standard curve, residuals or QQ-plot
 using \code{ggplot2} package.
+NB: This is a borrowed function from the drLumi R package which
+is no longer available on the CRAN for automatic installation.
 }
 \details{
 All information in order to generate the plots is extracted

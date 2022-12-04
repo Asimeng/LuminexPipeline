@@ -24,10 +24,13 @@ the self starter function and the parameter names.
 \description{
 This selfStart model evaluates the exponential growth
 regression model and its gradient. It has an \code{initial}
-attribute that will evaluate initial estimates of the parameters
+attribute that will evaluate initial estimates of the parameters.#'
 \code{y0}, and \code{b} for a given set of data. Instead of the standard
 \code{exp} function this implementation use the \code{10^} function.
 \deqn{f(x)=y_0 \times 10^b}
+
+NB: This is a borrowed function from the drLumi R package which
+is no longer available on the CRAN for automatic installation.
 }
 \examples{
 # Load data

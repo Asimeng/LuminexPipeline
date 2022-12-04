@@ -68,6 +68,8 @@ est_conc(igmodels, concdf, fmfi="mfi", dilution = 2)
 Given a \code{scluminex} object with standard curve information
 and a \code{data.frame} with response values add to the original
 dataset the concentration data.
+NB: This is a borrowed function from the drLumi R package which
+is no longer available on the CRAN for automatic installation.
 }
 \details{
 Given a \code{\link{scluminex}} object and a \code{data.frame} with

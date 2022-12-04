@@ -4,6 +4,9 @@
 #' Extracts from a \code{lum_export} or \code{data.frame} object controls,
 #' dilutions points, background and samples to be calibrated.
 #' These files can be merged to an expected concentration and flag dataset.
+#' NB: This is a borrowed function
+#' from the drLumi R package which is no longer available on the CRAN for
+#' automatic installation.
 #'
 #' @usage
 #' data_selection(x, ecfile = NULL, flagsfile = NULL, backname = "Back",

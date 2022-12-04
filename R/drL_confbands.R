@@ -1,7 +1,9 @@
 #' Confidence interval for a scluminex object
 #'
 #' @description Computes confidence or prediction interval for the
-#' response variable given a concentration value.
+#' response variable given a concentration value. NB: This is a borrowed function
+#' from the drLumi R package which is no longer available on the CRAN for
+#' automatic installation.
 #'
 #' @param x a \code{scluminex} object.
 #' @param analyte character vector specifying the analytes to estimate the

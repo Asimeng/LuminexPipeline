@@ -4,6 +4,8 @@
 #' Given a \code{scluminex} object with standard curve information
 #' and a \code{data.frame} with response values add to the original
 #' dataset the concentration data.
+#' NB: This is a borrowed function from the drLumi R package which
+#' is no longer available on the CRAN for automatic installation.
 #'
 #' @usage
 #' est_conc(x, df, fanalyte = "analyte", fmfi = "median", dilution = 1,

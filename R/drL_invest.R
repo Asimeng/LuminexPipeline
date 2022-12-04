@@ -2,6 +2,8 @@
 #'
 #' @description Estimates the inverse of the funtion. Given a response value,
 #' estimates the corresponding concentration value and the standard error.
+#' NB: This is a borrowed function from the drLumi R package which
+#' is no longer available on the CRAN for automatic installation.
 #'
 #' @usage
 #' invest(x, analyte=NULL, yvalue, ci.method = c("delta", "bootstrap"),

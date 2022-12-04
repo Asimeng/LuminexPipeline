@@ -92,7 +92,7 @@ norm_tab <- function(dat){
               }
     )
 
-  return(view(tab))
+  return(tab)
 }
 
 

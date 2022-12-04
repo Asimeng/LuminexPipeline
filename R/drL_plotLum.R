@@ -143,23 +143,25 @@ plotLum <- function(x, subset.plot = NULL , psize=1.8, ncol = NULL,
 }
 
 
-## Plot qqnorm of the residuals for each analyte
-##
-## Plot qqnorm of the residuals for each analyte the  \code{scluminex}
-## object in a ggplot format so new parameters can be added
-##
-## @param x a \code{scluminex} object
-## @param subset.plot list of analytes to be plotted. By default
-## plot all analytes.
-## @param psize point size
-## @param ncol number of columns to plot the analytes.
-## @param nrow number of rows to plot the analytes.
-## @param ... other \code{ggplot} arguments
-##
-## @return A \code{ggplot} object
-##
-## @importFrom reshape melt melt.data.frame
-## @import ggplot2
+#' Plot qqnorm of the residuals for each analyte
+#'
+#' @description
+#' Plot qqnorm of the residuals for each analyte the  \code{scluminex}
+#' object in a ggplot format so new parameters can be added
+#'
+#' @param x a \code{scluminex} object
+#' @param subset.plot list of analytes to be plotted. By default
+#' plot all analytes.
+#' @param psize point size
+#' @param ncol number of columns to plot the analytes.
+#' @param nrow number of rows to plot the analytes.
+#' @param ... other \code{ggplot} arguments
+#'
+#' @return A \code{ggplot} object
+#'
+#' @importFrom reshape melt melt.data.frame
+#' @import ggplot2
+
 plotQQnorm <- function(x, subset.plot = NULL, psize=1.8,
                        ncol=NULL, nrow = NULL, ...) {
 

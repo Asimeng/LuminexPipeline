@@ -40,6 +40,8 @@ for a given set of data
 Instead of the standard \code{exp} function this implementation use
 the \code{10^} function.
 \deqn{f(x)=lAsym +\frac{hAsym-lAsym}{(1+10^{Slope(x-xMid)})^{Asymetry}}}
+NB: This is a borrowed function from the drLumi R package which
+is no longer available on the CRAN for automatic installation.
 }
 \examples{
 # Load data

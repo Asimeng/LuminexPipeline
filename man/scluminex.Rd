@@ -59,6 +59,8 @@ coef, data, rsquare
 Given a dilutions points and background \code{data.frame} estimates
 a model (in a recursive way is possible)
 for a background method.
+NB: This is a borrowed function from the drLumi R package which
+is no longer available on the CRAN for automatic installation.
 }
 \details{
 The models are fitted by the \code{nlsLM} function from the

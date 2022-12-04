@@ -4,7 +4,8 @@
 #' @param analyte_reference From external table or database
 #' @param dta returned data from clean colnames function
 #'
-#' @import dplyr stringr
+#' @import dplyr
+#' @import stringr
 #' @export
 #'
 analyte_names_fix <- function(analyte_reference = analyte_reference,
@@ -88,7 +89,8 @@ clean_Analyte4 <- function(v = NULL) {
 #' @param analyte_reference_path reference path
 #' @param dta dta path from colname_clean function
 #'
-#' @import dplyr tidyr
+#' @import dplyr
+#' @import tidyr
 #' @export
 #'
 analyte_names_fix2 <- function(analyte_reference_path = analyte_reference_path,

@@ -36,7 +36,7 @@
 #' by rows.
 #'
 #' @examples
-#' dir <- "inst/extdata/"
+#' dir <- paste0(system.file(package = "LuminexPipeline"), "/extdata")
 #'
 #' data_import(dir_data = dir)
 #'

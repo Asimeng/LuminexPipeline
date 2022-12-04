@@ -200,10 +200,10 @@ dates_filename <- function(d) {
 #' #assign instrument names to a variable called ins_names
 #' ins_names <- c("bp", "rd")
 #'
-#' #read input data to the environment
-#' my_data <- readRDS("tests/testthat/rds/dta_import.rds")
+#' #load input data
+#' data(dta_import)
 #'
-#' filename_separate(data = my_data, instrument_names = ins_names)
+#' filename_separate(data = dta_import, instrument_names = ins_names)
 #'
 #' @export
 #'

@@ -13,7 +13,7 @@ replicate_means <- function(tech_reps = tech_reps,
     distinct() %>%
     group_by(date, instrument,
              kit, plate, description, consensus, rerun) %>%
-    summarise(nr_of_replicates = n()) %>%
+    dplyr::summarise(nr_of_replicates = n()) %>%
     ungroup() %>%
     inner_join(dta_list$dta_participants)
 
@@ -39,7 +39,7 @@ replicate_means <- function(tech_reps = tech_reps,
              rerun, description, analyte,
              analyte_simple, consensus,
              analyte_in_ref) %>%
-    summarise(conc_obs_num_mean =
+    dplyr::summarise(conc_obs_num_mean =
                 mean(conc_obs_num, na.rm = TRUE)) %>%
     bind_rows(dta %>%
                 filter(nr_of_replicates == 1)) %>%

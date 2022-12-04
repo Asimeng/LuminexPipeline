@@ -19,7 +19,8 @@
 #' @param dta Output tibble or dataframe of the preceding
 #' \code{analyte_names_fix()} function.
 #'
-#' @import dplyr readr
+#' @import dplyr
+#' @import readr
 #'
 #' @details
 #' The \code{symbols_remove()} function assumes its input data is available

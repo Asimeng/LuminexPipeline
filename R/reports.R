@@ -73,7 +73,7 @@ norm_tab <- function(dat){
 
     group_by(analyte) %>%
 
-    summarise(kurtosis = DescTools::Kurt(conc_obs_num, na.rm = T),
+    dplyr::summarise(kurtosis = DescTools::Kurt(conc_obs_num, na.rm = T),
 
               skewness = DescTools::Skew(conc_obs_num, na.rm = T),
 
@@ -137,7 +137,7 @@ grp_test <- function(dta_prtc, dta_clin){
 
     group_by(analyte) %>%
 
-    summarise(p.value = wilcox.test(conc_obs_num ~ group )[["p.value"]],
+    dplyr::summarise(p.value = wilcox.test(conc_obs_num ~ group )[["p.value"]],
 
               w.statistic = wilcox.test(conc_obs_num ~ group)[["statistic"]])
 

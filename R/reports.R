@@ -151,6 +151,8 @@ grp_test <- function(dta_prtc, dta_clin){
 #' @param dta dataframe from the pipeline
 #' @param cor_type type of correlation in string format. eg "pearson"
 #'
+#' @importFrom Hmisc rcorr
+#'
 #' @return a flatten correlation matrix (table)
 #' @export
 #'
@@ -197,6 +199,8 @@ correlation <- function(dta, cor_type = "spearman"){
 #'
 #' @param dta dataframe from pipeline
 #' @param cor_type character, type of correlation to compute
+#'
+#' @importFrom Hmisc rcorr
 #'
 #' @return A graph (correlogram) of correlations
 #' @export

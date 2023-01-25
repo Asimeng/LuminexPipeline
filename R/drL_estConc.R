@@ -44,7 +44,7 @@
 #' object with the corresponding analyte of the \code{df} argument.
 #'
 #'
-#' @return
+#'
 #' Input \code{data.frame} with the following merged variables:
 #' \itemize{
 #' \item{\code{log10.fitted.conc}}{, log10 fitted concentration}

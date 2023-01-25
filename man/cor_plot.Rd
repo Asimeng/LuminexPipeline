@@ -4,10 +4,19 @@
 \alias{cor_plot}
 \title{Visualise correlogram - analytes}
 \usage{
-cor_plot(dta, cor_type = "spearman")
+cor_plot(
+  dta,
+  analyte_col = "analyte",
+  conc_col = "obs_conc",
+  cor_type = "spearman"
+)
 }
 \arguments{
 \item{dta}{dataframe from pipeline}
+
+\item{analyte_col}{column name for analyte in "quotes"}
+
+\item{conc_col}{column name for observed concentration in "quotes"}
 
 \item{cor_type}{character, type of correlation to compute}
 }

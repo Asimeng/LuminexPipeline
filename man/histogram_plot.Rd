@@ -4,10 +4,19 @@
 \alias{histogram_plot}
 \title{Histogram plot}
 \usage{
-histogram_plot(dta_prtc, facet_rows = 5)
+histogram_plot(
+  dta_prtc,
+  analyte_col = "analyte",
+  conc_col = "obs_conc",
+  facet_rows = 5
+)
 }
 \arguments{
 \item{dta_prtc}{processed dataframe}
+
+\item{analyte_col}{column name for analyte in "quotes"}
+
+\item{conc_col}{column name for observed concentration in "quotes"}
 
 \item{facet_rows}{numeric value indicating number of rows to facet.}
 }

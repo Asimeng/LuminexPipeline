@@ -27,43 +27,6 @@ estimation.}
 
 \item{level}{numeric value, confidence level, required. Default 0.95.}
 }
-\value{
-Input \code{data.frame} with the following merged variables:
-\itemize{
-\item{\code{log10.fitted.conc}}{, log10 fitted concentration}
-\item{\code{log10.fitted.conc.se}}{, log10 standard error of the log10
-fitted concentration}
-\item{\code{dilution}}{, dilution to be applied to the samples}
-\item{\code{dil.fitted.conc}}{, diluted fitted concentration
-in original scale}
-\item{\code{dil.lb.conc}}{, diluted fitted lower bound concentration
-in original scale}
-\item{\code{dil.ub.conc}}{, diluted fitted upper bound concentration
-in original scale}
-\item{\code{warning}}{, warning message (if necessary)}
-}
-
-@examplesLoad data and fit models
-
-data(ecdata)
-data(mfidata)
-
-dat <- mfidata\link{mfidata$plate=="plate_1" & mfidata$analyte=="FGF",}
-sdf <- data_selection(dat, ecdata)$plate_1
-
-igmodels <- scluminex("plate_1",sdf$standard, sdf$background,
-lfct="SSl4", bkg="ignore", fmfi="mfi", verbose=FALSE)Data to estimate concentration
-
-concdf <- sdf$positiveDilution factor 1
-
-est_conc(igmodels, concdf, fmfi="mfi", dilution = 1)Dilution factor 2
-
-est_conc(igmodels, concdf, fmfi="mfi", dilution = 2)
-
-@importFrom stringr str_trim
-@importFrom plyr ldply dlply rbind.fill ddply
-@export
-}
 \description{
 Given a \code{scluminex} object with standard curve information
 and a \code{data.frame} with response values add to the original
@@ -89,4 +52,48 @@ be used for all analytes of the \code{df} \code{data.frame}.
 If one standard curve is fitted by each analyte \code{one.curve} must
 be \code{FALSE}, so the function will merge each model of the \code{scluminex}
 object with the corresponding analyte of the \code{df} argument.
+
+Input \code{data.frame} with the following merged variables:
+\itemize{
+\item{\code{log10.fitted.conc}}{, log10 fitted concentration}
+\item{\code{log10.fitted.conc.se}}{, log10 standard error of the log10
+fitted concentration}
+\item{\code{dilution}}{, dilution to be applied to the samples}
+\item{\code{dil.fitted.conc}}{, diluted fitted concentration
+in original scale}
+\item{\code{dil.lb.conc}}{, diluted fitted lower bound concentration
+in original scale}
+\item{\code{dil.ub.conc}}{, diluted fitted upper bound concentration
+in original scale}
+\item{\code{warning}}{, warning message (if necessary)}
 }
+
+@examples
+}
+\section{Load data and fit models}{
+data(ecdata)
+data(mfidata)
+
+dat <- mfidata\link{mfidata$plate=="plate_1" & mfidata$analyte=="FGF",}
+sdf <- data_selection(dat, ecdata)$plate_1
+
+igmodels <- scluminex("plate_1",sdf$standard, sdf$background,
+lfct="SSl4", bkg="ignore", fmfi="mfi", verbose=FALSE)
+}
+
+\section{Data to estimate concentration}{
+concdf <- sdf$positive
+}
+
+\section{Dilution factor 1}{
+est_conc(igmodels, concdf, fmfi="mfi", dilution = 1)
+}
+
+\section{Dilution factor 2}{
+est_conc(igmodels, concdf, fmfi="mfi", dilution = 2)
+
+@importFrom stringr str_trim
+@importFrom plyr ldply dlply rbind.fill ddply
+@export
+}
+

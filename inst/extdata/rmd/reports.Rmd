@@ -7,33 +7,45 @@ params:
   cor_type: "spearman"
   facet: 5
 ---
+```{r setup, include=FALSE} 
+knitr::opts_chunk$set(warning = FALSE, message = FALSE) 
+```
+
 ## Summary table
-```{r}
-LuminexPipeline::summ_table(params$data)
+```{r echo=FALSE}
+tab <- LuminexPipeline::summ_table(dta = params$data, analyte_col = "analyte", conc_col = "conc_obs_num")
+
+kable(tab)
 ```
 
 ## Analytes in a histogram
-```{r}
-LuminexPipeline::histogram_plot(params$data, params$facet)
+```{r echo=FALSE}
+LuminexPipeline::histogram_plot(dta_prtc =  params$data, analyte_col = "analyte", conc_col = "conc_obs_num", facet_rows =  params$facet) 
+
 ```
 
 ## Test for non-normality
-```{r}
-LuminexPipeline::norm_tab(params$data)
+```{r echo=FALSE}
+norm <- LuminexPipeline::norm_tab(dat = params$data, analyte_col = "analyte", conc_col = "conc_obs_num")
+
+kable(norm)
 ```
 
 ## q-q plot
-```{r}
-LuminexPipeline::qq_plot(params$data, params$facet)
+```{r echo=FALSE}
+LuminexPipeline::qq_plot(dta = params$data, analyte_col = "analyte", conc_col = "conc_obs_num", facet_row =  params$facet)
 ```
 
 ## Correlation table
-```{r}
-LuminexPipeline::correlation(params$data, params$cor_type)
+```{r echo=FALSE}
+cor <- LuminexPipeline::correlation(dta = params$data, analyte_col = "analyte", conc_col = "conc_obs_num", cor_type =  params$cor_type)
+
+kable(cor)
 ```
 
 ## Visualise correlation
-```{r}
-LuminexPipeline::cor_plot(params$data, params$cor_type)
+```{r echo=FALSE}
+LuminexPipeline::cor_plot(dta = params$data, analyte_col = "analyte", conc_col = "conc_obs_num", cor_type =  params$cor_type)
+
 ```
 

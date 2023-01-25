@@ -4,15 +4,19 @@
 \alias{qq_plot}
 \title{Generate quantile-quantile plots to assess normality}
 \usage{
-qq_plot(dta, facet_row = 5)
+qq_plot(dta, analyte_col = "analyte", conc_col = "obs_conc", facet_row = 5)
 }
 \arguments{
-\item{dta}{dataframe from pipeline}
+\item{dta}{data to generate q-q plot from from}
+
+\item{analyte_col}{column name for analyte in "quotes"}
+
+\item{conc_col}{column name for observed concentration in "quotes"}
 
 \item{facet_row}{numeric value indicating number of rows to facet}
 }
 \value{
-A quantile-quantil graph
+A quantile-quantile graph
 }
 \description{
 Generate quantile-quantile plots to assess normality

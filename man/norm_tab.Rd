@@ -4,10 +4,14 @@
 \alias{norm_tab}
 \title{Test for normality}
 \usage{
-norm_tab(dat)
+norm_tab(dat, analyte_col = "analyte", conc_col = "obs_conc")
 }
 \arguments{
 \item{dat}{data to generate test of normality table from}
+
+\item{analyte_col}{column name for analyte in "quotes"}
+
+\item{conc_col}{column name for observed concentration in "quotes"}
 }
 \value{
 a table of normality test

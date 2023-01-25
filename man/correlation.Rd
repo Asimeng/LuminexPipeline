@@ -4,10 +4,19 @@
 \alias{correlation}
 \title{Correlation tests}
 \usage{
-correlation(dta, cor_type = "spearman")
+correlation(
+  dta,
+  analyte_col = "analyte",
+  conc_col = "obs_conc",
+  cor_type = "spearman"
+)
 }
 \arguments{
 \item{dta}{dataframe from the pipeline}
+
+\item{analyte_col}{column name for analyte in "quotes"}
+
+\item{conc_col}{column name for observed concentration in "quotes"}
 
 \item{cor_type}{type of correlation in string format. eg "pearson"}
 }

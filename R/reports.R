@@ -1,28 +1,29 @@
 #' Summary table
 #'
 #' @param dta processed dataframe
-#'
+#' @param conc_col column name for observed concentrations in "quotes"
+#' @param analyte_col column name for analyte in "quotes"
 #' @return a table of summaries
 #' @export
 #'
 #'
-summ_table <- function(dta) {
+summ_table <- function(dta, analyte_col = "analyte", conc_col = "obs_conc") {
 
   options(scipen = 999, digits = 1)
 
   summary_table <- dta %>%
 
-    group_by(analyte) %>%
+    group_by(.data[[analyte_col]]) %>%
 
     dplyr::summarise(
-      minimum = min(conc_obs_num, na.rm = TRUE),
-      maximum = max(conc_obs_num, na.rm = TRUE),
-      mean = mean(conc_obs_num, na.rm = TRUE),
-      first_quart = quantile(conc_obs_num,  probs = 0.25, na.rm = TRUE),
-      median = median(conc_obs_num, na.rm = TRUE),
-      third_quart = quantile(conc_obs_num, probs = 0.75, na.rm = TRUE),
-      NAs = sum(is.na(conc_obs_num)),
-      available_obs = sum(!is.na(conc_obs_num)),
+      minimum = min(.data[[conc_col]], na.rm = TRUE),
+      maximum = max(.data[[conc_col]], na.rm = TRUE),
+      mean = mean(.data[[conc_col]], na.rm = TRUE),
+      first_quart = quantile(.data[[conc_col]],  probs = 0.25, na.rm = TRUE),
+      median = median(.data[[conc_col]], na.rm = TRUE),
+      third_quart = quantile(.data[[conc_col]], probs = 0.75, na.rm = TRUE),
+      NAs = sum(is.na(.data[[conc_col]])),
+      available_obs = sum(!is.na(.data[[conc_col]])),
       total_obs = n()) %>%
 
     ungroup()
@@ -38,6 +39,8 @@ summ_table <- function(dta) {
 #' Histogram plot
 #'
 #' @param dta_prtc processed dataframe
+#' @param analyte_col column name for analyte in "quotes"
+#' @param conc_col column name for observed concentration in "quotes"
 #' @param facet_rows numeric value indicating number of rows to facet.
 #'
 #' @return a plot of histogram
@@ -45,13 +48,13 @@ summ_table <- function(dta) {
 #'
 #'
 #'
-histogram_plot <- function(dta_prtc, facet_rows = 5) {
+histogram_plot <- function(dta_prtc, analyte_col = "analyte", conc_col = "obs_conc",  facet_rows = 5) {
 
   dta_prtc %>%
-    ggplot2::ggplot(aes(x = conc_obs_num)) +
-    geom_histogram(aes(y = ..density..), colour = "black", fill = "grey", na.rm = TRUE) +
+    ggplot2::ggplot(aes(x = .data[[conc_col]])) +
+    geom_histogram(aes(y = after_stat(density)), colour = "black", fill = "grey", na.rm = TRUE) +
     geom_density(colour = "blue") +
-    facet_wrap(~ analyte, nrow = facet_rows,  scales ="free") +
+    facet_wrap(~ .data[[analyte_col]], nrow = facet_rows,  scales ="free") +
     ggtitle("Plot with untransformed data")
 }
 
@@ -60,33 +63,34 @@ histogram_plot <- function(dta_prtc, facet_rows = 5) {
 #' Test for normality
 #'
 #' @param dat data to generate test of normality table from
-#'
+#' @param analyte_col column name for analyte in "quotes"
+#' @param conc_col column name for observed concentration in "quotes"
 #' @return a table of normality test
 #' @export
 #'
 #'
-norm_tab <- function(dat){
+norm_tab <- function(dat, analyte_col = "analyte", conc_col = "obs_conc"){
 
   options(scipen = F, digits = 1)
 
   tab <-  dat %>%
 
-    group_by(analyte) %>%
+    group_by(.data[[analyte_col]]) %>%
 
-    dplyr::summarise(kurtosis = DescTools::Kurt(conc_obs_num, na.rm = T),
+    dplyr::summarise(kurtosis = DescTools::Kurt(.data[[conc_col]], na.rm = T),
 
-              skewness = DescTools::Skew(conc_obs_num, na.rm = T),
+              skewness = DescTools::Skew(.data[[conc_col]], na.rm = T),
 
-              Shapiro.Francia = if(sum(!is.na(conc_obs_num)) >= 5) {
+              Shapiro.Francia = if(sum(!is.na(.data[[conc_col]])) >= 5) {
 
-                DescTools::ShapiroFranciaTest(conc_obs_num)[["statistic"]]
+                DescTools::ShapiroFranciaTest(.data[[conc_col]])[["statistic"]]
 
               } else {NA
               },
 
-              p_val = if(sum(!is.na(conc_obs_num)) >= 5) {
+              p_val = if(sum(!is.na(.data[[conc_col]])) >= 5) {
 
-                DescTools::ShapiroFranciaTest(conc_obs_num)[["p.value"]]
+                DescTools::ShapiroFranciaTest(.data[[conc_col]])[["p.value"]]
 
               } else{NA
               }
@@ -99,20 +103,22 @@ norm_tab <- function(dat){
 
 #' Generate quantile-quantile plots to assess normality
 #'
-#' @param dta dataframe from pipeline
+#' @param dta data to generate q-q plot from from
+#' @param analyte_col column name for analyte in "quotes"
+#' @param conc_col column name for observed concentration in "quotes"
 #' @param facet_row numeric value indicating number of rows to facet
 #'
-#' @return A quantile-quantil graph
+#' @return A quantile-quantile graph
 #' @export
 #'
 #'
-qq_plot <- function(dta, facet_row = 5){
+qq_plot <- function(dta, analyte_col = "analyte", conc_col = "obs_conc", facet_row = 5){
 
   dta %>%
-    ggplot2::ggplot(aes(sample = conc_obs_num)) +
+    ggplot2::ggplot(aes(sample = .data[[conc_col]])) +
     stat_qq() +
     stat_qq_line() +
-    ggplot2::facet_wrap(~ analyte, nrow = facet_row, scales = "free")
+    ggplot2::facet_wrap(~ .data[[analyte_col]], nrow = facet_row, scales = "free")
 }
 
 
@@ -149,6 +155,8 @@ grp_test <- function(dta_prtc, dta_clin){
 #' Correlation tests
 #'
 #' @param dta dataframe from the pipeline
+#' @param analyte_col column name for analyte in "quotes"
+#' @param conc_col column name for observed concentration in "quotes"
 #' @param cor_type type of correlation in string format. eg "pearson"
 #'
 #' @importFrom Hmisc rcorr
@@ -157,19 +165,19 @@ grp_test <- function(dta_prtc, dta_clin){
 #' @export
 #'
 #'
-correlation <- function(dta, cor_type = "spearman"){
+correlation <- function(dta, analyte_col = "analyte", conc_col = "obs_conc", cor_type = "spearman"){
 
   piv_dat <- dta %>%
 
-    select(analyte, conc_obs_num) %>%
+    select(.data[[analyte_col]], .data[[conc_col]]) %>%
 
-    group_by(analyte) %>%
+    group_by(.data[[analyte_col]]) %>%
 
     mutate(row = row_number()) %>%
 
     tidyr::pivot_wider(
-      names_from = analyte,
-      values_from = conc_obs_num) %>%
+      names_from = .data[[analyte_col]],
+      values_from = .data[[conc_col]]) %>%
 
     dplyr::select(-row)
 
@@ -198,6 +206,8 @@ correlation <- function(dta, cor_type = "spearman"){
 #' Visualise correlogram - analytes
 #'
 #' @param dta dataframe from pipeline
+#' @param analyte_col column name for analyte in "quotes"
+#' @param conc_col column name for observed concentration in "quotes"
 #' @param cor_type character, type of correlation to compute
 #'
 #' @importFrom Hmisc rcorr
@@ -206,19 +216,19 @@ correlation <- function(dta, cor_type = "spearman"){
 #' @export
 #'
 #'
-cor_plot <- function(dta, cor_type = "spearman"){
+cor_plot <- function(dta, analyte_col = "analyte", conc_col = "obs_conc", cor_type = "spearman"){
 
   piv_dat <- dta %>%
 
-    select(analyte, conc_obs_num) %>%
+    select(.data[[analyte_col]], .data[[conc_col]]) %>%
 
-    group_by(analyte) %>%
+    group_by(.data[[analyte_col]]) %>%
 
     mutate(row = row_number()) %>%
 
     tidyr::pivot_wider(
-      names_from = analyte,
-      values_from = conc_obs_num) %>%
+      names_from = .data[[analyte_col]],
+      values_from = .data[[conc_col]]) %>%
 
     dplyr::select(-row)
 
@@ -234,24 +244,12 @@ cor_plot <- function(dta, cor_type = "spearman"){
                      tl.cex = 0.6,tl.col="black", tl.srt=45)
 }
 
-#' render statistical summary report
-#'
-#' @param dta rds file with its extension
-#'
-#' @return an html report
-#' @export
-#'
-#'
 
-render_report <- function(dta) {
+#Render statistical summary report
 
-  rmarkdown::render(
-    input = "vignettes/reports.Rmd",
-    output_dir = "rds/statistical_summary_report.html",
-    params = list(
-      directory = "rds",
-      file = dta
-    )
-  )
-
-}
+# rmarkdown::render(
+#   input = paste0(system.file(package = "LuminexPipeline"), "/extdata/rmd/reports.Rmd"),
+#   output_file = "statistical_report.html",
+#   params = list(cor_type = "pearson", facet = 9, data = `6_dta_symbol_remove`),
+#   encoding     = 'UTF-8'
+# )

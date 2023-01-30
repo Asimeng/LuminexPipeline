@@ -1,6 +1,6 @@
 Package: LuminexPipeline
 Title: Reproducible Processing And Analysis Of Multiplexed ELISA Data
-Version: 0.0.0.9000
+Version: 0.0.9
 Authors@R: 
     person("Jesse", "Asimeng", , "asimeng@sun.ac.za", 
     role = c("aut", "cre"))

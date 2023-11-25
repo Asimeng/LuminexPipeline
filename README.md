@@ -1,7 +1,7 @@
 # R LuminexPipeline package
 <p>
 This is the R package repository for the LuminexPipeline utility—a utility for processing and analysing multiplexed (Luminex) ELISA assay data in a robust and reproducible manner. The functionalities of the pipeline include importing raw Luminex files (.txt files), data cleaning and tidying, recording metadata (e.g., values beyond detectable limits), imputation of missing values, and standardising analyte names with an analyte reference list to ensure consistency. The Luminex Pipeline performs these tasks while recording all the processing and analytical steps for record-keeping and reproducibility purposes. 
-A junk of the functions in this package were written by Ncité Lima DaCamara as part of her PhD dissertation. My MSc dissertation contributed to this utility with additional functions especially for statistical computations, unit testing, documentation and compiling all the code into an R package for easy code distribution and installation. 
+Majority of the functions in this package were written by Ncité Lima DaCamara as part of her PhD dissertation. My MSc dissertation contributed to this utility with additional functions especially for statistical computations, unit testing, documentation and compiling all the code into an R package for easy code distribution and installation. 
 
 This utility can be installed by either of the following two methods.  
 
